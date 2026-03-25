@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clipboard Hacking Lab</title>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0f2027, #0a0a0a);
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 45px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00ffcc, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 30px;
+            width: 85%;
+            max-width: 800px;
+            margin: 30px auto;
+            box-shadow: 0 0 30px rgba(0, 255, 200, 0.25);
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 255, 200, 0.5);
+        }
+
+        .title {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-align: center;
+        }
+
+        .about-text {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            margin-top: 10px;
+            font-size: 16px;
+            resize: none;
+            background: #111;
+            color: #00ffcc;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #00ffcc, #00ccff);
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #00ccaa, #0099cc);
+        }
+
+        #copyStatus {
+            margin-top: 10px;
+            color: #00ffcc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    CLIPBOARD HIJACKING
+</header>
+
+<!-- ABOUT SECTION FIRST -->
+<div class="container">
+    <div class="card">
+        <div class="title">About Clipboard Hijacking</div>
+
+        <div class="about-text">
+            Clipboard hijacking (clipper malware) is a cyber attack where malicious software secretly monitors and modifies copied data.
+
+            <br><br>
+
+            <b>⚡ Attack Flow:</b><br>
+            - User copies sensitive data (wallet, bank, link)<br>
+            - Malware intercepts clipboard<br>
+            - Data is replaced with attacker-controlled content<br>
+            - Victim pastes → action goes to attacker
+
+            <br><br>
+
+            <b>💰 Real-World Uses:</b><br>
+            - Cryptocurrency wallet replacement<br>
+            - Bank account manipulation<br>
+            - Malicious software download links<br>
+            - Phishing redirection
+
+            <br><br>
+
+            <b>🌐 Where attackers use it:</b><br>
+            - Financial fraud systems<br>
+            - Malware campaigns<br>
+            - Social engineering attacks<br>
+            - Dark web operations
+
+            <br><br>
+
+            <b>⚠️ Prevention:</b><br>
+            - Always verify pasted data<br>
+            - Double-check wallet addresses<br>
+            - Avoid untrusted downloads<br>
+            - Use endpoint security tools
+
+            <br><br>
+
+            ⚠️ This is an educational simulation for CyberSecurity Awareness.
+        </div>
+    </div>
+</div>
+
+<!-- DEMO SECTION -->
+<div class="container">
+    <div class="card">
+
+        <div class="title">Live Attack Simulation</div>
+
+        <p>Copy this text:</p>
+        <textarea id="copyText">Are you think you copied this?</textarea>
+
+        <button onclick="copyText()">Copy Text</button>
+        <p id="copyStatus"></p>
+
+        <p style="margin-top:20px;">Paste here to see the attack result:</p>
+        <textarea id="pasteText" placeholder="Paste here..."></textarea>
+
+    </div>
+</div>
+
+<footer>
+    Cybersecurity Demo Project | Clipboard Manipulation Attack Simulation
+</footer>
+
+<script>
+    function copyText() {
+        let text = document.getElementById("copyText");
+        text.select();
+        document.execCommand("copy");
+
+        document.getElementById("copyStatus").innerText = "✅ Text Copied ";
+    }
+
+    document.addEventListener('copy', function(e) {
+        e.clipboardData.setData('text/plain', 
+        '⚠️Ooops You copied malicious text😈');
+        e.preventDefault();
+    });
+</script>
+
+</body>
+</html>
